@@ -1,0 +1,22 @@
+{% extends 'njp/base.html' %}
+
+{% block content %}
+    <div class="tags-container">
+        <div class="alltags-text">Все тэги</div>
+
+        <form class="tags" action="" method="get">
+            <input name="s" placeholder="Поиск..." type="search">
+            <button type="submit"></button>
+        </form>
+
+        <div class="tags-box">
+            {% for tag in tags %}
+                {% if tag.pic_count > 1 %}
+                    <div class="tag">#{{ tag.name }}({{ tag.pic_count }})</div>
+                {% else %}
+                    <div class="tag">#{{ tag.name }}</div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

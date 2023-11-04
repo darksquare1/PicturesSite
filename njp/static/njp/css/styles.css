@@ -47,6 +47,11 @@ body {
     background-color: hsl(261, 68%, 30%);
 }
 
+.tags-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
 .left-bar {
     width: 25%;
@@ -67,9 +72,27 @@ body {
     text-align: center;
 }
 
+.alltags-text {
+    font-family: 'Tektur', sans-serif;
+    font-weight: 200;
+    font-size: 30px;
+    color: #8c8c8c;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+
 form {
     position: relative;
     width: 80%;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+form.tags {
+    position: relative;
+    width: 15%;
     margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
@@ -107,6 +130,17 @@ button:before {
 
 .tag-box {
     width: 90%;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.tags-box {
+    width: 50%;
     margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
@@ -190,7 +224,7 @@ button:before {
     transition: all 150ms ease;
 }
 
-.pic-overlay:hover>.pic-overlay-text {
+.pic-overlay:hover > .pic-overlay-text {
     color: #444444;
     transition: all 150ms ease;
     display: block;
