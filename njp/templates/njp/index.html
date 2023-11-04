@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tektur:wght@400;800&display=swap');
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'njp/css/styles.css' %}" type="text/css">
+    <title>NJP Home</title>
+</head>
+
+<body>
+<div class="header">
+    <div class="name">NJP.pics</div>
+    <div class="upload-btn">ДОБАВИТЬ</div>
+</div>
+<div class="left-bar">
+    <div class="populartags">Популярные тэги</div>
+    <form action="" method="get">
+        <input name="s" placeholder="Поиск..." type="search">
+        <button type="submit"></button>
+    </form>
+    <div class="tag-box">
+        {% for tag in tags %}
+            <div class="tag">#{{ tag.name }}</div>
+        {% endfor %}
+    </div>
+    <div class="show-all">Показать все</div>
+</div>
+<div class="pics-feed">
+    <div style="height: 100px"></div>
+    {% for pic in pics_list %}
+        {{ pic.id }}
+        <div class="pic">
+            <div class="pic-overlay">
+                <div class="pic-overlay-text">ОТКРЫТЬ</div>
+            </div>
+            <div class="image-box">
+                <img class="pic-img" src="{{ pic.photo.url }}">
+            </div>
+            <div class="img-tag-list">
+                {% for tag in pic.tags.all %}
+                    <div class="imgtag">#{{ tag.name }}</div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+</body>
+
+</html>
