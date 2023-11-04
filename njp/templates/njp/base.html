@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tektur:wght@400;800&display=swap');
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'njp/css/styles.css' %}" type="text/css">
+    <title>{{ title }}</title>
+</head>
+<body>
+<div class="header">
+    <div class="name">NJP.pics</div>
+    <div class="upload-btn">ДОБАВИТЬ</div>
+</div>
+{% block content %} {% endblock %}
+</body>
+</html>
