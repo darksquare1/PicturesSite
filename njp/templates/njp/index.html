@@ -25,8 +25,12 @@
         <button type="submit"></button>
     </form>
     <div class="tag-box">
-        {% for tag in tags %}
-            <div class="tag">#{{ tag.name }}</div>
+        {% for tag in popular_tags %}
+            {% if tag.pic_count > 1 %}
+            <div class="tag">#{{ tag.name }}[{{ tag.pic_count }}]</div>
+            {% else %}
+                <div class="tag">#{{ tag.name }}</div>
+            {% endif %}
         {% endfor %}
     </div>
     <div class="show-all">Показать все</div>
@@ -34,7 +38,6 @@
 <div class="pics-feed">
     <div style="height: 100px"></div>
     {% for pic in pics_list %}
-        {{ pic.id }}
         <div class="pic">
             <div class="pic-overlay">
                 <div class="pic-overlay-text">ОТКРЫТЬ</div>
