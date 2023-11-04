@@ -9,13 +9,15 @@
         <div class="tag-box">
             {% for tag in popular_tags %}
                 {% if tag.pic_count > 1 %}
-                    <div class="tag">#{{ tag.name }}[{{ tag.pic_count }}]</div>
+                    <div class="tag" data-tag-name="{{ tag.name }}" onclick="toggleTag(this)">
+                        #{{ tag.name }}[{{ tag.pic_count }}]
+                    </div>
                 {% else %}
-                    <div class="tag">#{{ tag.name }}</div>
+                    <div class="tag" data-tag-name="{{ tag.name }}" onclick="toggleTag(this)">#{{ tag.name }}</div>
                 {% endif %}
             {% endfor %}
         </div>
-        <div class="show-all">Показать все</div>
+        <div class="show-all" onclick="showSelectedTags()" style="display: none">Показать</div>
     </div>
     <div class="pics-feed">
         <div style="height: 100px"></div>
@@ -35,4 +37,31 @@
             </div>
         {% endfor %}
     </div>
+    <script>
+
+        function toggleTag(tagElement) {
+            tagElement.classList.toggle('selected-tag');
+
+
+            const selectedTags = document.querySelectorAll('.selected-tag');
+
+            if (selectedTags.length > 0) {
+
+                document.querySelector('.show-all').style.display = 'block';
+            } else {
+                document.querySelector('.show-all').style.display = 'none';
+            }
+        }
+
+        function showSelectedTags() {
+            const selectedTags = document.querySelectorAll('.selected-tag');
+            const tagNames = [];
+            selectedTags.forEach(tag => {
+                tagNames.push(tag.getAttribute('data-tag-name'));
+            });
+            const tagQueryString = tagNames.join('+');
+
+            window.location.href = `/?tags=${tagQueryString}`;
+        }
+    </script>
 {% endblock %}

@@ -1,7 +1,7 @@
-from django.shortcuts import render
-from django.views.generic import DetailView, ListView
-from django.db.models import Count
 from .models import *
+
+from django.views.generic import ListView, DetailView
+from django.db.models import Count
 
 
 class Index(ListView):
@@ -16,6 +16,17 @@ class Index(ListView):
         context['popular_tags'] = popular_tags
         context['all_tags'] = Tag.objects.all()
         context['title'] = "NJP Home"
+
+        selected_tags = self.request.GET.getlist('tags')
+        if selected_tags:
+            selected_tags = selected_tags[0].split()
+            filtered_pics = Pic.objects
+
+            for tag in selected_tags:
+                filtered_pics = filtered_pics.filter(tags__name=tag)
+
+            context['pics_list'] = filtered_pics.distinct()
+
         return context
 
 
@@ -31,3 +42,5 @@ class AllTags(ListView):
 
     def get_queryset(self):
         return Tag.objects.annotate(pic_count=Count('tags', distinct=True)).order_by('-pic_count')
+class ShowPick(DetailView):
+    pass

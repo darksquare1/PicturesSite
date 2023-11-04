@@ -218,6 +218,11 @@ button:before {
     display: none;
     user-select: none;
 }
+.selected-tag {
+    background-color: #ffc107;
+    color: #333;
+    border: 1px solid #ffc107;
+}
 
 .pic-overlay:hover {
     background: rgba(255, 255, 255, 0.6);
