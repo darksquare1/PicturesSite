@@ -1,7 +1,7 @@
 {% extends 'njp/base.html' %}
 {% block content %}
     <div class="left-bar">
-        <div class="populartags">Популярные тэги</div>
+        <div class="popular-tags">Популярные тэги</div>
         <form action="" method="get">
             <input name="s" placeholder="Поиск..." type="search">
             <button type="submit"></button>
@@ -17,7 +17,12 @@
                 {% endif %}
             {% endfor %}
         </div>
-        <div class="show-all" onclick="showSelectedTags()" style="display: none">Показать</div>
+
+        <div class="show-selected-btn" onclick="showSelectedTags()" style="display: none">Показать выбранное</div>
+
+        <div class="clear-tags-btn">Сбросить</div>
+
+
     </div>
     <div class="pics-feed">
         <div style="height: 100px"></div>
@@ -47,9 +52,9 @@
 
             if (selectedTags.length > 0) {
 
-                document.querySelector('.show-all').style.display = 'block';
+                document.querySelector('.show-selected-btn').style.display = 'block';
             } else {
-                document.querySelector('.show-all').style.display = 'none';
+                document.querySelector('.show-selected-btn').style.display = 'none';
             }
         }
 

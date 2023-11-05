@@ -31,10 +31,7 @@ body {
     color: #f7efe5;
     user-select: none;
     background-color: hsl(261, 68%, 65%);
-    padding-left: 7px;
-    padding-right: 7px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding: 5px 7px;
     border-radius: 13px;
 }
 
@@ -60,10 +57,9 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    display: block;
 }
 
-.populartags {
+.popular-tags {
     font-family: 'Tektur', sans-serif;
     font-weight: 200;
     font-size: 30px;
@@ -72,13 +68,12 @@ body {
     text-align: center;
 }
 
-.alltags-text {
+.all-tags-text {
     font-family: 'Tektur', sans-serif;
     font-weight: 200;
     font-size: 30px;
     color: #8c8c8c;
-    margin: auto;
-    margin-bottom: 10px;
+    margin: auto auto 10px;
 }
 
 
@@ -112,7 +107,7 @@ input {
 button {
     position: absolute;
     top: 0;
-    right: 0px;
+    right: 0;
     width: 42px;
     height: 42px;
     border: none;
@@ -123,17 +118,14 @@ button {
 
 button:before {
     content: "\f002";
-    font-family: FontAwesome;
+    font-family: FontAwesome, serif;
     font-size: 16px;
     color: #F9F0DA;
 }
 
 .tag-box {
     width: 90%;
-    margin-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
-
+    margin: 10px auto 7px;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
@@ -170,15 +162,48 @@ button:before {
     transition: all 50ms ease;
 }
 
-
-.show-all {
+.show-selected-btn {
     font-family: 'Tektur', sans-serif;
-    font-weight: 200;
-    text-decoration: underline;
-    font-size: 17px;
-    color: #f7efe5;
-    margin-top: 10px;
+    font-size: 20px;
     text-align: center;
+    color: #f7efe5;
+    user-select: none;
+    background-color: hsl(261, 68%, 56%);
+    padding: 5px 7px;
+    border-radius: 13px;
+    width: 60%;
+    margin: auto auto 5px;
+}
+
+.show-selected-btn:hover {
+    background-color: hsl(261, 68%, 50%);
+    transition: all 75ms ease;
+}
+
+.show-selected-btn:active {
+    background-color: hsl(261, 68%, 30%);
+}
+
+.clear-tags-btn {
+    font-family: 'Tektur', sans-serif;
+    font-size: 20px;
+    text-align: center;
+    color: #f7efe5;
+    user-select: none;
+    background-color: hsl(261, 68%, 70%);
+    padding: 5px 7px;
+    border-radius: 13px;
+    width: 60%;
+    margin: auto;
+}
+
+.clear-tags-btn:hover {
+    background-color: hsl(261, 68%, 75%);
+    transition: all 75ms ease;
+}
+
+.clear-tags-btn:active {
+    background-color: hsl(261, 68%, 80%);
 }
 
 .pics-feed {
@@ -198,7 +223,6 @@ button:before {
 }
 
 .pic-overlay {
-    display: block;
     width: 600px;
     height: 600px;
     position: absolute;
@@ -210,7 +234,6 @@ button:before {
 }
 
 .pic-overlay-text {
-    display: block;
     font-family: 'Tektur', sans-serif;
     font-weight: 200;
     font-size: 40px;
@@ -218,10 +241,10 @@ button:before {
     display: none;
     user-select: none;
 }
+
 .selected-tag {
     background-color: #ffc107;
     color: #333;
-    border: 1px solid #ffc107;
 }
 
 .pic-overlay:hover {
