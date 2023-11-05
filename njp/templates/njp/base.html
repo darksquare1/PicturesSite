@@ -14,9 +14,16 @@
 </head>
 <body>
 <div class="header">
-    <div class="name">NJP.pics</div>
+    <div class="name" onclick="toHome()">NJP.pics</div>
     <div class="upload-btn">ДОБАВИТЬ</div>
 </div>
+
+<script>
+    function toHome() {
+        window.location.href = `/`;
+    }
+</script>
+
 {% block content %} {% endblock %}
 </body>
 </html>

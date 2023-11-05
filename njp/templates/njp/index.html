@@ -19,10 +19,7 @@
         </div>
 
         <div class="show-selected-btn" onclick="showSelectedTags()" style="display: none">Показать выбранное</div>
-
-        <div class="clear-tags-btn">Сбросить</div>
-
-
+        <div class="clear-tags-btn" onclick="clearTags()" style="display: none">Cбросить</div>
     </div>
     <div class="pics-feed">
         <div style="height: 100px"></div>
@@ -43,7 +40,6 @@
         {% endfor %}
     </div>
     <script>
-
         function toggleTag(tagElement) {
             tagElement.classList.toggle('selected-tag');
 
@@ -51,7 +47,6 @@
             const selectedTags = document.querySelectorAll('.selected-tag');
 
             if (selectedTags.length > 0) {
-
                 document.querySelector('.show-selected-btn').style.display = 'block';
             } else {
                 document.querySelector('.show-selected-btn').style.display = 'none';
@@ -68,5 +63,16 @@
 
             window.location.href = `/?tags=${tagQueryString}`;
         }
+
+        function clearTags() {
+            window.location.href = `/`;
+        }
+
+        if (window.location.href.includes("?tags=")) {
+                document.querySelector('.clear-tags-btn').style.display = 'block';
+            } else {
+                document.querySelector('.clear-tags-btn').style.display = 'none';
+            }
     </script>
+
 {% endblock %}

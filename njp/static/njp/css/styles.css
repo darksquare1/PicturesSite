@@ -23,6 +23,7 @@ body {
     margin-left: 20px;
     user-select: none;
     margin-right: 20px;
+    cursor: pointer;
 }
 
 .upload-btn {
@@ -33,6 +34,7 @@ body {
     background-color: hsl(261, 68%, 65%);
     padding: 5px 7px;
     border-radius: 13px;
+    cursor: pointer;
 }
 
 .upload-btn:hover {
@@ -97,7 +99,7 @@ input {
     width: 100%;
     height: 42px;
     padding-left: 10px;
-    border: 2px solid #7BA7AB;
+    border: 2px solid #7743db;
     border-radius: 5px;
     outline: none;
     background: #F9F0DA;
@@ -111,7 +113,7 @@ button {
     width: 42px;
     height: 42px;
     border: none;
-    background: #7BA7AB;
+    background-color: hsl(261, 68%, 60%);
     border-radius: 0 5px 5px 0;
     cursor: pointer;
 }
@@ -173,6 +175,7 @@ button:before {
     border-radius: 13px;
     width: 60%;
     margin: auto auto 5px;
+    cursor: pointer;
 }
 
 .show-selected-btn:hover {
@@ -195,6 +198,8 @@ button:before {
     border-radius: 13px;
     width: 60%;
     margin: auto;
+    display: none;
+    cursor: pointer;
 }
 
 .clear-tags-btn:hover {
