@@ -42,5 +42,7 @@ class AllTags(ListView):
 
     def get_queryset(self):
         return Tag.objects.annotate(pic_count=Count('tags', distinct=True)).order_by('-pic_count')
+
+
 class ShowPick(DetailView):
     pass

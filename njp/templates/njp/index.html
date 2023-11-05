@@ -6,6 +6,7 @@
             <input name="s" placeholder="Поиск..." type="search">
             <button type="submit"></button>
         </form>
+        <div class="open-tags-page-btn" onclick="toAllTags()">Показать все</div>
         <div class="tag-box">
             {% for tag in popular_tags %}
                 {% if tag.pic_count > 1 %}
@@ -69,13 +70,17 @@
         }
 
         if (window.location.href.includes("?tags=")) {
-                document.querySelector('.clear-tags-btn').style.display = 'block';
-            } else {
-                document.querySelector('.clear-tags-btn').style.display = 'none';
-            }
+            document.querySelector('.clear-tags-btn').style.display = 'block';
+        } else {
+            document.querySelector('.clear-tags-btn').style.display = 'none';
+        }
 
         function openTag(tagName) {
             window.location.href = `/?tags=${tagName}`;
+        }
+
+        function toAllTags() {
+            window.location.href = `/tags`;
         }
     </script>
 

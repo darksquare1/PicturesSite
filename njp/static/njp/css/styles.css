@@ -125,6 +125,17 @@ button:before {
     color: #F9F0DA;
 }
 
+.open-tags-page-btn {
+    font-family: 'Tektur', sans-serif;
+    font-weight: 200;
+    text-decoration: underline;
+    font-size: 17px;
+    color: #f7efe5;
+    margin-top: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
 .tag-box {
     width: 90%;
     margin: 10px auto 7px;
