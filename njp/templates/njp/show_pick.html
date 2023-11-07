@@ -1,10 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'njp/base.html' %}
+{% block content %}
+<div class="main-image-box">
+    <div class="id-text">{{ pic }}</div>
+    <div class="pic-box">
+        <img class="pic-img" src="{{ pic.photo.url }}">
+    </div>
+    <div class="img-tag-list-main">
+        {% for tag in pic.tags.all %}
+        <div class="imgtag">#{{ tag.name }}</div>
+        {% endfor %}
+    </div>
+    <div class="downld-text">Скачать изображение в полном размере</div>
+</div>
 
-</body>
-</html>
+{% endblock %}
