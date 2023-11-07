@@ -16,7 +16,6 @@ class Index(ListView):
         context['popular_tags'] = popular_tags
         context['all_tags'] = Tag.objects.all()
         context['title'] = "NJP Home"
-
         selected_tags = self.request.GET.getlist('tags')
         if selected_tags:
             selected_tags = selected_tags[0].split()
@@ -36,7 +35,7 @@ class AllTags(ListView):
     context_object_name = 'tags'
 
     def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data()
+        context = super().get_context_data(**kwargs)
         context['title'] = "Tags"
         return context
 
@@ -45,4 +44,12 @@ class AllTags(ListView):
 
 
 class ShowPick(DetailView):
-    pass
+    model = Pic
+    template_name = 'njp/show_pick.html'
+    pk_url_kwarg = 'pk'
+    context_object_name = 'pic'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = context['pic']
+        return context

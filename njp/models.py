@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Pic(models.Model):
@@ -9,13 +10,16 @@ class Pic(models.Model):
     def get_likes_count(self):
         return self.likes.count()
 
+    def get_absolute_url(self):
+        return reverse('pic', kwargs={"pk": self.pk})
+
     class Meta:
         verbose_name = "Картинки"
         verbose_name_plural = 'Картинки'
         ordering = ['-time_create']
 
     def __str__(self):
-        return f"Картинка {self.id}"
+        return f"Картинка {self.pk}"
 
 
 class Like(models.Model):
