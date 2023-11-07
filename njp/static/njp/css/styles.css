@@ -236,6 +236,7 @@ button:before {
 .pic {
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 50px;
     display: block;
 }
 
@@ -295,7 +296,6 @@ button:before {
 
 .img-tag-list {
     margin-top: 3px;
-    margin-bottom: 50px;
     display: flex;
     justify-content: center;
 }
@@ -329,8 +329,7 @@ button:before {
 .pic-box {
     height: 600px;
     background-color: aqua;
-    margin: auto;
-    margin-bottom: 2px;
+    margin: auto auto 2px;
     display: flex;
 }
 .pic-box img {
@@ -343,8 +342,7 @@ button:before {
     font-weight: 200;
     font-size: 20px;
     color: #8c8c8c;
-    margin: auto;
-    margin-bottom: 10px;
+    margin: 10px auto;
     text-decoration: underline;
 }
 .id-text {
@@ -352,12 +350,5 @@ button:before {
     font-weight: 200;
     font-size: 30px;
     color: #8c8c8c;
-    margin: auto;
-    margin-bottom: 10px;
-}
-.img-tag-list-main {
-    margin-top: 3px;
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: center;
+    margin: auto auto 10px;
 }

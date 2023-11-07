@@ -15,7 +15,7 @@ class Index(ListView):
         popular_tags = all_tags.annotate(pic_count=Count('tags', distinct=True)).order_by('-pic_count')
         context['popular_tags'] = popular_tags
         context['all_tags'] = Tag.objects.all()
-        context['title'] = "NJP Home"
+        context['title'] = "NJP"
         selected_tags = self.request.GET.getlist('tags')
         if selected_tags:
             selected_tags = selected_tags[0].split()
@@ -45,7 +45,7 @@ class AllTags(ListView):
 
 class ShowPick(DetailView):
     model = Pic
-    template_name = 'njp/show_pick.html'
+    template_name = 'njp/show_pic.html'
     pk_url_kwarg = 'pk'
     context_object_name = 'pic'
 

@@ -26,8 +26,8 @@
         <div style="height: 100px"></div>
         {% for pic in pics_list %}
             <div class="pic">
-                <div class="pic-overlay">
-                    <div class="pic-overlay-text"><a href="{{pic.get_absolute_url}}">ОТКРЫТЬ</a></div>
+                <div class="pic-overlay" onclick="openImg('{{ pic.get_absolute_url }}')">
+                    <div class="pic-overlay-text">ОТКРЫТЬ</div>
                 </div>
                 <div class="image-box">
                     <img class="pic-img" src="{{ pic.photo.url }}">
@@ -81,6 +81,10 @@
 
         function toAllTags() {
             window.location.href = '{% url 'tags' %}';
+        }
+
+        function openImg(imgurl) {
+            window.location.href = imgurl;
         }
     </script>
 {% endblock %}

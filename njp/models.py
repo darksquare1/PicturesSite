@@ -19,7 +19,7 @@ class Pic(models.Model):
         ordering = ['-time_create']
 
     def __str__(self):
-        return f"Картинка {self.pk}"
+        return f"Изображение №{self.pk}"
 
 
 class Like(models.Model):
