@@ -83,6 +83,7 @@ body {
 form {
     position: relative;
     width: 80%;
+    max-width: 300px;
     margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
@@ -103,27 +104,29 @@ input {
     border: 2px solid #7743db;
     border-radius: 5px;
     outline: none;
-    background: #F9F0DA;
+    background: #fffbf5;
     color: #9E9C9C;
 }
 
-button {
+.loopa {
     position: absolute;
     top: 0;
     right: 0;
     width: 42px;
     height: 42px;
     border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: hsl(261, 68%, 60%);
     border-radius: 0 5px 5px 0;
-    cursor: pointer;
 }
 
-button:before {
+.loopa:before {
     content: "\f002";
     font-family: FontAwesome, serif;
     font-size: 16px;
-    color: #F9F0DA;
+    color: #fffbf5;
 }
 
 .open-tags-page-btn {
@@ -131,7 +134,7 @@ button:before {
     font-weight: 200;
     text-decoration: underline;
     font-size: 17px;
-    color: #f7efe5;
+    color: #fffbf5;
     margin-top: 10px;
     text-align: center;
     cursor: pointer;
@@ -319,24 +322,28 @@ button:before {
     background-color: #a4a3a3;
     transition: all 50ms ease;
 }
+
 .main-image-box {
-    padding-top:60px;
+    padding-top: 60px;
     display: flex;
     flex-direction: column;
     justify-content: center;
 
 }
+
 .pic-box {
     height: 600px;
     background-color: aqua;
     margin: auto auto 2px;
     display: flex;
 }
+
 .pic-box img {
     height: 100%;
     margin: auto;
     align-items: center
 }
+
 .downld-text {
     font-family: 'Tektur', sans-serif;
     font-weight: 200;
@@ -345,6 +352,7 @@ button:before {
     margin: 10px auto;
     text-decoration: underline;
 }
+
 .id-text {
     font-family: 'Tektur', sans-serif;
     font-weight: 200;

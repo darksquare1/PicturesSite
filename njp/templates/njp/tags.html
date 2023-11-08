@@ -4,19 +4,49 @@
     <div class="tags-container">
         <div class="all-tags-text">Все тэги</div>
 
-        <form class="tags" action="" method="get">
-            <input name="s" placeholder="Поиск..." type="search">
-            <button type="submit"></button>
+        <form autocomplete="off" action="" method="get">
+            <input id="search-input" name="s" placeholder="Поиск..." type="search">
+            <div class="loopa"></div>
         </form>
 
         <div class="tags-box">
             {% for tag in tags %}
                 {% if tag.pic_count > 1 %}
-                    <div class="tag">#{{ tag.name }}({{ tag.pic_count }})</div>
+                    <div class="tag" style="display:none" data-tag-name="{{ tag.name }}"
+                         onclick="openTag('{{ tag.name }}')">
+                        #{{ tag.name }}[{{ tag.pic_count }}]
+                    </div>
                 {% else %}
-                    <div class="tag">#{{ tag.name }}</div>
+                    <div class="tag" style="display:none" data-tag-name="{{ tag.name }}"
+                         onclick="openTag('{{ tag.name }}')">
+                        #{{ tag.name }}</div>
                 {% endif %}
             {% endfor %}
         </div>
     </div>
+
+    <script>
+
+        function openTag(tagName) {
+            window.location.href = `/?tags=${tagName}`;
+        }
+
+        function filterTags() {
+            const searchInput = document.getElementById('search-input');
+            const searchValue = searchInput.value.toLowerCase();
+            const tags = document.querySelectorAll('.tag');
+            tags.forEach(tag => {
+                const tagName = tag.getAttribute('data-tag-name').toLowerCase();
+                if (!searchValue || tagName.includes(searchValue)) {
+                    tag.style.display = 'block';
+
+                } else {
+                    tag.style.display = 'none';
+                }
+            });
+        }
+
+        document.getElementById('search-input').addEventListener('input', filterTags);
+        filterTags();
+    </script>
 {% endblock %}
