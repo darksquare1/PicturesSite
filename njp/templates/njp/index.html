@@ -10,11 +10,11 @@
         <div class="tag-box">
             {% for tag in popular_tags %}
                 {% if tag.pic_count > 1 %}
-                    <div class="tag" data-tag-name="{{ tag.name }}" onclick="toggleTag(this)">
+                    <div class="tag" style="display:none" data-tag-name="{{ tag.name }}" onclick="toggleTag(this)">
                         #{{ tag.name }}[{{ tag.pic_count }}]
                     </div>
                 {% else %}
-                    <div class="tag" data-tag-name="{{ tag.name }}" onclick="toggleTag(this)">
+                    <div class="tag" style="display:none" data-tag-name="{{ tag.name }}" onclick="toggleTag(this)">
                         #{{ tag.name }}</div>
                 {% endif %}
             {% endfor %}
@@ -86,5 +86,28 @@
         function openImg(imgurl) {
             window.location.href = imgurl;
         }
+
+        function filterTags() {
+            let visibleTagCount = 0;
+            const searchInput = document.getElementById('search-input');
+            const searchValue = searchInput.value.toLowerCase();
+            const tags = document.querySelectorAll('.tag');
+            tags.forEach(tag => {
+                const tagName = tag.getAttribute('data-tag-name').toLowerCase();
+                if (!searchValue || tagName.includes(searchValue)) {
+                    if (visibleTagCount < 50) {
+                        tag.style.display = 'block';
+                        visibleTagCount += 1;
+                    } else {
+                        tag.style.display = 'none';
+                    }
+                } else {
+                    tag.style.display = 'none';
+                }
+            });
+        }
+
+        document.getElementById('search-input').addEventListener('input', filterTags);
+        filterTags();
     </script>
 {% endblock %}
