@@ -1,6 +1,3 @@
-from django.shortcuts import render, redirect
-
-from .forms import PicForm
 from .models import *
 
 from django.views.generic import ListView, DetailView
@@ -65,18 +62,18 @@ from .forms import PicForm
 def upload_pic(request):
     if request.method == 'POST':
         form = PicForm(request.POST, request.FILES)
-        tags = set(request.POST['tags'])
-        tags_list = [tag.strip() for tag in request.POST['tags'].split(',')]
+        tags_list = [tag.strip().lower() for tag in request.POST['tags'].split(',')]
         unique_tags = list(set(tags_list))
         unique_tags = [tag for tag in unique_tags if tag]
         print(unique_tags)
         if form.is_valid():
             pic = form.save(commit=False)
+            pic.save()
             for i in unique_tags:
                 a = Tag(name=i, slug=i)
-                print(a)
-            pic.save()
-            form.save_m2m()
+                a.save()
+                pic.tags.add(a.id)
+
             return redirect('pic',
                             pk=pic.pk)
     else:

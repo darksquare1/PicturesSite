@@ -88,7 +88,7 @@ form {
     margin-right: auto;
 }
 
-form.tags {
+form.tags-search-bar {
     position: relative;
     width: 15%;
     margin-top: 10px;
@@ -103,7 +103,7 @@ input {
     border: 2px solid #7743db;
     border-radius: 5px;
     outline: none;
-    background: #F9F0DA;
+    background: #fffbf5;
     color: #9E9C9C;
 }
 
@@ -319,24 +319,27 @@ button:before {
     background-color: #a4a3a3;
     transition: all 50ms ease;
 }
+
 .main-image-box {
-    padding-top:60px;
+    padding-top: 60px;
     display: flex;
     flex-direction: column;
     justify-content: center;
 
 }
+
 .pic-box {
     height: 600px;
-    background-color: aqua;
     margin: auto auto 2px;
     display: flex;
 }
+
 .pic-box img {
     height: 100%;
     margin: auto;
     align-items: center
 }
+
 .downld-text {
     font-family: 'Tektur', sans-serif;
     font-weight: 200;
@@ -345,6 +348,7 @@ button:before {
     margin: 10px auto;
     text-decoration: underline;
 }
+
 .id-text {
     font-family: 'Tektur', sans-serif;
     font-weight: 200;
