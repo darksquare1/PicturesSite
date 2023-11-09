@@ -65,13 +65,16 @@ def upload_pic(request):
         tags_list = [tag.strip().lower() for tag in request.POST['tags'].split(',')]
         unique_tags = list(set(tags_list))
         unique_tags = [tag for tag in unique_tags if tag]
-        print(unique_tags)
+        exist_tags = [tag.name for tag in Tag.objects.all()]
         if form.is_valid():
             pic = form.save(commit=False)
             pic.save()
             for i in unique_tags:
-                a = Tag(name=i, slug=i)
-                a.save()
+                if i in exist_tags:
+                    a = Tag.objects.get(name=i)
+                else:
+                    a = Tag(name=i, slug=i)
+                    a.save()
                 pic.tags.add(a.id)
 
             return redirect('pic',
