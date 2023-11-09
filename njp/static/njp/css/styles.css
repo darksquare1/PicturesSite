@@ -15,7 +15,10 @@ body {
     z-index: 100;
     margin-bottom: 10px;
 }
-
+a.download-pic{
+    text-decoration: inherit;
+    color:inherit;
+}
 .name {
     font-family: 'Tektur', sans-serif;
     font-weight: 800;

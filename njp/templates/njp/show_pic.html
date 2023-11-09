@@ -10,7 +10,7 @@
         <div class="imgtag">#{{ tag.name }}</div>
         {% endfor %}
     </div>
-    <div class="downld-text">Скачать изображение в полном размере</div>
+    <div class="downld-text"><a class="download-pic" href ="{{ pic.photo.url }}" download>Скачать изображение в полном размере</a></div>
 </div>
 
 {% endblock %}
