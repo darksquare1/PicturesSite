@@ -53,3 +53,32 @@ class ShowPick(DetailView):
         context = super().get_context_data(**kwargs)
         context['title'] = context['pic']
         return context
+
+
+from django.shortcuts import render, redirect
+from .forms import PicForm
+
+
+def upload_pic(request):
+    if request.method == 'POST':
+        form = PicForm(request.POST, request.FILES)
+        tags_list = [tag.strip().lower() for tag in request.POST['tags'].split(',')]
+        unique_tags = list(set(tags_list))
+        unique_tags = [tag for tag in unique_tags if tag]
+        exist_tags = [tag.name for tag in Tag.objects.all()]
+        if form.is_valid():
+            pic = form.save(commit=False)
+            pic.save()
+            for i in unique_tags:
+                if i in exist_tags:
+                    a = Tag.objects.get(name=i)
+                else:
+                    a = Tag(name=i, slug=i)
+                    a.save()
+                pic.tags.add(a.id)
+
+            return redirect('pic',
+                            pk=pic.pk)
+    else:
+        form = PicForm()
+    return render(request, 'njp/add_pic.html', {'form': form})
