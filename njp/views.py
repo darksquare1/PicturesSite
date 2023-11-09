@@ -75,9 +75,9 @@ def upload_pic(request):
             img_name = pic.photo.name.split('.')[0]
             if img.height > 500 or img.width > 500:
                 img.thumbnail((600, 350))
-                img.save(output_thumb,format=img.format,quality=90)
+                img.save(output_thumb, format=img.format, quality=90)
             pic.photo_thumb_nail = InMemoryUploadedFile(output_thumb, 'ImageField', f"{img_name}_thumb.{img.format}",
-                                                       'image/jpeg', sys.getsizeof(output_thumb), None)
+                                                        f"image/{img.format}", sys.getsizeof(output_thumb), None)
             pic.save()
             for i in unique_tags:
                 if i in exist_tags:
