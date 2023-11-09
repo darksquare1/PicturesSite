@@ -4,9 +4,9 @@ from django.urls import reverse
 
 class Pic(models.Model):
     photo = models.ImageField(upload_to='users/%Y/%m/%d/', verbose_name='Фото')
+    photo_thumb_nail = models.ImageField(upload_to='users/thumbs/%Y/%m/%d/',blank=True,verbose_name='thumbnail')
     time_create = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
     tags = models.ManyToManyField('Tag', blank=False, related_name='tags', verbose_name='Теги')
-
     def get_likes_count(self):
         return self.likes.count()
 

@@ -1,8 +1,9 @@
 from .models import *
-
 from django.views.generic import ListView, DetailView
 from django.db.models import Count
-
+from django.shortcuts import render, redirect
+from .forms import PicForm
+from PIL import Image
 
 class Index(ListView):
     model = Pic
@@ -55,8 +56,6 @@ class ShowPick(DetailView):
         return context
 
 
-from django.shortcuts import render, redirect
-from .forms import PicForm
 
 
 def upload_pic(request):
