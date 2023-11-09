@@ -1,9 +1,14 @@
+import sys
 from .models import *
 from django.views.generic import ListView, DetailView
 from django.db.models import Count
 from django.shortcuts import render, redirect
 from .forms import PicForm
+from io import BytesIO
 from PIL import Image
+from django.db import models
+from django.core.files.uploadedfile import InMemoryUploadedFile
+
 
 class Index(ListView):
     model = Pic
@@ -56,8 +61,6 @@ class ShowPick(DetailView):
         return context
 
 
-
-
 def upload_pic(request):
     if request.method == 'POST':
         form = PicForm(request.POST, request.FILES)
@@ -67,6 +70,14 @@ def upload_pic(request):
         exist_tags = [tag.name for tag in Tag.objects.all()]
         if form.is_valid():
             pic = form.save(commit=False)
+            output_thumb = BytesIO()
+            img = Image.open(pic.photo)
+            img_name = pic.photo.name.split('.')[0]
+            if img.height > 500 or img.width > 500:
+                img.thumbnail((600, 350))
+                img.save(output_thumb,format=img.format,quality=90)
+            pic.photo_thumb_nail = InMemoryUploadedFile(output_thumb, 'ImageField', f"{img_name}_thumb.{img.format}",
+                                                       'image/jpeg', sys.getsizeof(output_thumb), None)
             pic.save()
             for i in unique_tags:
                 if i in exist_tags:

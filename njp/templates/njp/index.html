@@ -30,7 +30,11 @@
                     <div class="pic-overlay-text">ОТКРЫТЬ</div>
                 </div>
                 <div class="image-box">
-                    <img class="pic-img" src="{{ pic.photo.url }}">
+                    {% if pic.photo_thumb_nail %}
+                    <img class="pic-img" src="{{ pic.photo_thumb_nail.url }}">
+                     {% else %}
+                     <img class="pic-img" src="{{ pic.photo.url }}">
+                    {% endif %}
                 </div>
                 <div class="img-tag-list">
                     {% for tag in pic.tags.all %}
