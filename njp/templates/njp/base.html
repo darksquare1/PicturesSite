@@ -15,12 +15,15 @@
 <body>
 <div class="header">
     <div class="name" onclick="toHome()">NJP.pics</div>
-    <div class="upload-btn">ДОБАВИТЬ</div>
+    <div class="upload-btn" onclick="toUpload()">ДОБАВИТЬ</div>
 </div>
 
 <script>
     function toHome() {
         window.location.href = "{% url 'index' %}";
+    }
+    function toUpload() {
+        window.location.href = "{% url 'upload' %}";
     }
 </script>
 
