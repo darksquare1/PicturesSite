@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'njp/css/styles.css' %}" type="text/css">
+    <link rel="shortcut icon" href="{% static 'njp/images/favicon.png' %}" type="image/x-icon">
     <title>{{ title }}</title>
 </head>
 <body>
@@ -22,6 +23,7 @@
     function toHome() {
         window.location.href = "{% url 'index' %}";
     }
+
     function toUpload() {
         window.location.href = "{% url 'upload' %}";
     }
