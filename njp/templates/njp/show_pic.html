@@ -1,16 +1,23 @@
 {% extends 'njp/base.html' %}
 {% block content %}
-<div class="main-image-box">
-    <div class="id-text">{{ pic }}</div>
-    <div class="pic-box">
-        <img class="pic-img" src="{{ pic.photo.url }}">
+    <div class="main-image-box">
+        <div class="id-text">{{ pic }}</div>
+        <div class="pic-box">
+            <img class="pic-img" src="{{ pic.photo.url }}">
+        </div>
+        <div class="img-tag-list">
+            {% for tag in pic.tags.all %}
+                <div class="imgtag" onclick="openTag('{{ tag.name }}')">#{{ tag.name }}</div>
+            {% endfor %}
+        </div>
+        <div class="downld-text"><a class="download-pic" href="{{ pic.photo.url }}" download>Скачать изображение в
+            полном размере</a></div>
     </div>
-    <div class="img-tag-list">
-        {% for tag in pic.tags.all %}
-        <div class="imgtag">#{{ tag.name }}</div>
-        {% endfor %}
-    </div>
-    <div class="downld-text"><a class="download-pic" href ="{{ pic.photo.url }}" download>Скачать изображение в полном размере</a></div>
-</div>
+
+    <script>
+        function openTag(tagName) {
+            window.location.href = `/?tags=${tagName}`;
+        }
+    </script>
 
 {% endblock %}
