@@ -64,7 +64,7 @@ class ShowPick(DetailView):
 def upload_pic(request):
     if request.method == 'POST':
         form = PicForm(request.POST, request.FILES)
-        tags_list = [tag.strip().lower() for tag in request.POST['tags'].split(',')]
+        tags_list = [tag.strip().lower().replace(' ', '_') for tag in request.POST['tags'].split(',')]
         unique_tags = list(set(tags_list))
         unique_tags = [tag for tag in unique_tags if tag]
         exist_tags = [tag.name for tag in Tag.objects.all()]
