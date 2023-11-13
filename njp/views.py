@@ -91,4 +91,4 @@ def upload_pic(request):
                             pk=pic.pk)
     else:
         form = PicForm()
-    return render(request, 'njp/add_pic.html', {'form': form})
+    return render(request, 'njp/add_pic.html', {'form': form, 'title': 'Upload'})

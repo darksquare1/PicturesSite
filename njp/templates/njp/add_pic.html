@@ -1,9 +1,76 @@
 {% extends 'njp/base.html' %}
+{% load static %}
 {% block content %}
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Загрузить</button>
-    </form>
+    <div class="upload-wrapper">
+        <div class="upload-zone">
+            <form method="post" enctype="multipart/form-data">
+                <div class="preview-wrapper">
+                    <img id="preview-image" src="{% static 'njp/images/placeholder-image.jpg' %}"
+                         alt="Превью изображение">
+                </div>
+
+                <input type="hidden" name="csrfmiddlewaretoken"
+                       value="GkcXzygDoZMSOwYzp4vULF4qvGnqTCoxXBTC3hOOEjI7mt7IqP62y6ivwIboiIBM">
+                <p>
+                    <input style="opacity: 0;height: 0" type="file" name="photo" accept="image/*" required
+                           id="id_photo"
+                           class="input id_photo">
+                    <label for="id_photo" class="input__file-button">
+                        <span class="input__file-icon-wrapper"><img class="input__file-icon"
+                                                                    src="{% static '/njp/images/upload.svg' %}"
+                                                                    alt="Выбрать файл" width="25"></span>
+                        <span class="input__file-button-text">Выберите файл</span>
+                    </label>
+                </p>
+
+
+                <input type="text" name="tags" maxlength="255" required id="id_tags" class="tags-input"
+                       placeholder="Введите теги через запятую">
+                <button class="submit-button" type="submit">Загрузить</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let inputs = document.querySelectorAll('.id_photo');
+        let previewImage = document.getElementById('preview-image');
+
+        Array.prototype.forEach.call(inputs, function (input) {
+            let label = input.nextElementSibling;
+
+            input.addEventListener('change', function () {
+                let countFiles = this.files.length;
+
+                if (countFiles) {
+                    let reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        previewImage.src = e.target.result;
+                    };
+
+                    reader.readAsDataURL(this.files[0]);
+
+                    let sliced = this.files[0].name.slice(0, 14);
+                    if (sliced.length < this.files[0].name.length) {
+                        sliced += '...';
+                    }
+                    label.querySelector('.input__file-button-text').innerText = sliced;
+                    hideElement();
+                }
+            });
+        });
+
+        function hideElement() {
+            var butt = document.querySelector('.submit-button');
+            var tags = document.querySelector('.tags-input');
+
+            if (butt) {
+                butt.style.opacity = 100;
+                tags.style.opacity = 100;
+            } else {
+                console.error("Элемент с id 'myElement' не найден.");
+            }
+        }
+    </script>
 {% endblock %}
 
