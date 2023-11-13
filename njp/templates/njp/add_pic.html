@@ -9,8 +9,7 @@
                          alt="Превью изображение">
                 </div>
 
-                <input type="hidden" name="csrfmiddlewaretoken"
-                       value="GkcXzygDoZMSOwYzp4vULF4qvGnqTCoxXBTC3hOOEjI7mt7IqP62y6ivwIboiIBM">
+                {% csrf_token %}
                 <p>
                     <input style="opacity: 0;height: 0" type="file" name="photo" accept="image/*" required
                            id="id_photo"
