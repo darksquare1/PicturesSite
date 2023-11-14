@@ -512,12 +512,16 @@ form.tags-search-bar {
     font-weight: 200;
     font-size: 15px;
     color: #fffbf5;
-    background-color: hsl(0, 100%, 79%);
+    background-color: hsl(0, 100%, 65%);
     padding-left: 8px;
     padding-right: 8px;
     border-width: 0;
     border-radius: 8px;
     display: inline;
+}
+
+.btn-like:hover {
+    background-color: hsl(0, 100%, 79%);
 }
 
 .like-button-wrapper {
