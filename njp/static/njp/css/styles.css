@@ -304,6 +304,7 @@ form.tags-search-bar {
 
 .img-tag-list {
     margin-top: 3px;
+    margin-bottom: 3px;
     display: flex;
     justify-content: center;
 }
@@ -468,12 +469,11 @@ form.tags-search-bar {
     width: 40%;
     padding-top: 5px;
     padding-bottom: 5px;
-    margin: auto;
     font-size: 16px;
     font-family: 'Tektur', sans-serif;
     font-weight: 200;
     opacity: 0;
-    margin-bottom: 40px;
+    margin: auto auto 40px;
 }
 
 .upload-zone button:hover {
@@ -496,4 +496,37 @@ form.tags-search-bar {
     height: 100%;
     border: black solid 1px;
     border-radius: 20px;
+}
+
+.likes {
+    font-family: 'Tektur', sans-serif;
+    font-weight: 200;
+    font-size: 15px;
+    color: #fffbf5;
+    background-color: #ff9494;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 8px;
+    margin: 5px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.btn-like {
+    font-family: 'Tektur', sans-serif;
+    font-weight: 200;
+    font-size: 15px;
+    color: #fffbf5;
+    background-color: hsl(0, 100%, 79%);
+    padding-left: 8px;
+    padding-right: 8px;
+    border-width: 0;
+    border-radius: 8px;
+    display: inline;
+}
+
+.like-button-wrapper {
+    margin: auto;
 }

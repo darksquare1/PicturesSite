@@ -77,7 +77,6 @@ class ShowPick(DetailView):
         return context
 
 
-
 def upload_pic(request):
     if request.method == 'POST':
         form = PicForm(request.POST, request.FILES)

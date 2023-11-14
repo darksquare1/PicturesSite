@@ -5,19 +5,24 @@
         <div class="upload-zone" id="upload-zone">
             <form method="post" enctype="multipart/form-data" id="upload-form">
                 <div class="preview-wrapper" id="preview-wrapper">
-                    <img id="preview-image" src="{% static 'njp/images/placeholder-image.jpg' %}" alt="Превью изображение">
+                    <img id="preview-image" src="{% static 'njp/images/placeholder-image.jpg' %}"
+                         alt="Превью изображение">
                 </div>
 
                 {% csrf_token %}
                 <p>
-                    <input style="opacity: 0;height: 0" type="file" name="photo" accept="image/*" required id="id_photo" class="input id_photo">
+                    <input style="opacity: 0;height: 0" type="file" name="photo" accept="image/*" required id="id_photo"
+                           class="input id_photo">
                     <label for="id_photo" class="input__file-button">
-                        <span class="input__file-icon-wrapper"><img class="input__file-icon" src="{% static '/njp/images/upload.svg' %}" alt="Выбрать файл" width="25"></span>
+                        <span class="input__file-icon-wrapper"><img class="input__file-icon"
+                                                                    src="{% static '/njp/images/upload.svg' %}"
+                                                                    alt="Выбрать файл" width="25"></span>
                         <span class="input__file-button-text">Выберите файл</span>
                     </label>
                 </p>
 
-                <input type="text" name="tags" maxlength="255" required id="id_tags" class="tags-input" placeholder="Введите теги через запятую">
+                <input type="text" name="tags" maxlength="255" required id="id_tags" class="tags-input"
+                       placeholder="Введите теги через запятую">
                 <button class="submit-button" type="submit">Загрузить</button>
             </form>
         </div>
@@ -36,7 +41,7 @@
 
         let uploadZone = document.getElementById('upload-zone');
 
-        uploadZone.addEventListener('drop', function(event) {
+        uploadZone.addEventListener('drop', function (event) {
             event.preventDefault();
             let droppedFiles = event.dataTransfer.files;
             if (droppedFiles.length > 0) {
@@ -45,7 +50,7 @@
             }
         });
 
-        uploadZone.addEventListener('dragover', function(event) {
+        uploadZone.addEventListener('dragover', function (event) {
             event.preventDefault();
         });
 
@@ -73,7 +78,7 @@
             }
         }
 
-        uploadForm.addEventListener('submit', function(event) {
+        uploadForm.addEventListener('submit', function (event) {
             let files = input.files;
             if (files.length === 0) {
                 event.preventDefault();

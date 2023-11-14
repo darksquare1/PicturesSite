@@ -1,4 +1,5 @@
 {% extends 'njp/base.html' %}
+{% load static %}
 {% block content %}
     <div class="left-bar">
         <div class="popular-tags">Популярные тэги</div>
@@ -31,12 +32,19 @@
                 </div>
                 <div class="image-box">
                     {% if pic.photo_thumb_nail %}
-                    <img class="pic-img" src="{{ pic.photo_thumb_nail.url }}">
-                     {% else %}
-                     <img class="pic-img" src="{{ pic.photo.url }}">
+                        <img class="pic-img" src="{{ pic.photo_thumb_nail.url }}">
+                    {% else %}
+                        <img class="pic-img" src="{{ pic.photo.url }}">
                     {% endif %}
                 </div>
-            {{ pic.get_likes_count }}
+                <div class="likes">
+                    <div class="likes-counter">
+                        {{ pic.get_likes_count }}
+                    </div>
+                    <img src="{% static 'njp/images/heart.svg' %}" style="width: 12px; margin-left: 3px">
+
+
+                </div>
                 <div class="img-tag-list">
                     {% for tag in pic.tags.all %}
                         <div class="imgtag" onclick="openTag('{{ tag.name }}')">#{{ tag.name }}</div>
@@ -48,8 +56,6 @@
     <script>
         function toggleTag(tagElement) {
             tagElement.classList.toggle('selected-tag');
-
-
             const selectedTags = document.querySelectorAll('.selected-tag');
 
             if (selectedTags.length > 0) {

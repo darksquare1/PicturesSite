@@ -10,16 +10,19 @@
                 <div class="imgtag" onclick="openTag('{{ tag.name }}')">#{{ tag.name }}</div>
             {% endfor %}
         </div>
-        <form action="{% url 'pic_like' pk=pic.id %}" method="post">
-            {% csrf_token %}
-            <button type="submit" name="pic-id" value="{{ pic.id }}" class="btn-like">
-                {% if is_liked %}
-                Дизлайк
-                {% else %}
-                Лайк
-                {% endif %}
-            </button>
-        </form>
+        <div class="like-button-wrapper">
+            <form action="{% url 'pic_like' pk=pic.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" name="pic-id" value="{{ pic.id }}" class="btn-like">
+                    {% if is_liked %}
+                        Не нравится
+                    {% else %}
+                        Нравится
+                    {% endif %}
+                </button>
+            </form>
+        </div>
+
         <div class="downld-text"><a class="download-pic" href="{{ pic.photo.url }}" download>Скачать изображение в
             полном размере</a></div>
     </div>
