@@ -5,8 +5,7 @@ from django.db.models import Count
 from django.shortcuts import render, redirect
 from .forms import PicForm
 from io import BytesIO
-from PIL import Image
-from django.db import models
+from PIL import Image, ImageOps
 from django.core.files.uploadedfile import InMemoryUploadedFile
 
 
@@ -70,14 +69,22 @@ def upload_pic(request):
         exist_tags = [tag.name for tag in Tag.objects.all()]
         if form.is_valid():
             pic = form.save(commit=False)
-            output_thumb = BytesIO()
+            orig_pic_buffer = BytesIO()
             img = Image.open(pic.photo)
             img_name = pic.photo.name.split('.')[0]
-            if img.height > 500 or img.width > 500:
-                img.thumbnail((600, 350))
-                img.save(output_thumb, format=img.format, quality=90)
-            pic.photo_thumb_nail = InMemoryUploadedFile(output_thumb, 'ImageField', f"{img_name}_thumb.{img.format}",
-                                                        f"image/{img.format}", sys.getsizeof(output_thumb), None)
+            img = img.convert('RGB')
+            orig_img = ImageOps.exif_transpose(img)
+            orig_img.save(orig_pic_buffer, format='webp')
+            pic.photo = InMemoryUploadedFile(orig_pic_buffer, 'ImageField', f"{img_name}.webp", f"image/webp",
+                                             sys.getsizeof(orig_pic_buffer), None)
+            if orig_img.height > 600 or orig_img.width > 600:
+                output_thumb = BytesIO()
+                orig_img.thumbnail((600, 600))
+                fixed_image = orig_img.convert('RGB')
+                fixed_image = ImageOps.exif_transpose(fixed_image)
+                fixed_image.save(output_thumb, format='webp', quality=90)
+            pic.photo_thumb_nail = InMemoryUploadedFile(output_thumb, 'ImageField', f"{img_name}_thumb.webp",
+                                                        f"image/webp", sys.getsizeof(output_thumb), None)
             pic.save()
             for i in unique_tags:
                 if i in exist_tags:
