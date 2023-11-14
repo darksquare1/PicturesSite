@@ -400,16 +400,9 @@ form.tags-search-bar {
 
 .input__file-icon-wrapper {
     height: 60px;
-    width: 60px;
-    margin-right: 15px;
-    display: -webkit-box;
-    display: -ms-flexbox;
+    width: 90px;
     display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
     justify-content: center;
     border-right: 2px solid #fff;
 }
@@ -419,7 +412,8 @@ form.tags-search-bar {
     font-weight: 200;
     font-size: 20px;
     line-height: 1;
-    margin-top: 1px;
+    margin-left: 30px;
+    display: inline;
 }
 
 .input__file-button {
@@ -432,7 +426,6 @@ form.tags-search-bar {
     font-weight: 700;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
     border-radius: 10px;
     cursor: pointer;
     margin: 0 auto;
