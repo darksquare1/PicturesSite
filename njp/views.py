@@ -1,4 +1,7 @@
 import sys
+
+from django.http import HttpResponseRedirect
+
 from .models import *
 from django.views.generic import ListView, DetailView
 from django.db.models import Count
@@ -54,10 +57,25 @@ class ShowPick(DetailView):
     pk_url_kwarg = 'pk'
     context_object_name = 'pic'
 
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        context = self.get_context_data(object=self.object)
+        is_liked = False
+        ip = get_client_ip(request)
+        if not IpModel.objects.filter(ip=ip).exists():
+            IpModel.objects.create(ip=ip)
+        if self.object.likes.filter(id=IpModel.objects.get(ip=ip).id).exists():
+            is_liked = True
+        else:
+            is_liked = False
+        context['is_liked'] = is_liked
+        return self.render_to_response(context)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = context['pic']
         return context
+
 
 
 def upload_pic(request):
@@ -84,7 +102,7 @@ def upload_pic(request):
                 fixed_image = ImageOps.exif_transpose(fixed_image)
                 fixed_image.save(output_thumb, format='webp', quality=90)
                 pic.photo_thumb_nail = InMemoryUploadedFile(output_thumb, 'ImageField', f"{img_name}_thumb.webp",
-                                                        f"image/webp", sys.getsizeof(output_thumb), None)
+                                                            f"image/webp", sys.getsizeof(output_thumb), None)
             pic.save()
             for i in unique_tags:
                 if i in exist_tags:
@@ -99,3 +117,25 @@ def upload_pic(request):
     else:
         form = PicForm()
     return render(request, 'njp/add_pic.html', {'form': form, 'title': 'Upload'})
+
+
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
+
+
+def picLike(request, pk):
+    pic_id = request.POST.get('pic-id')
+    pic = Pic.objects.get(pk=pic_id)
+    ip = get_client_ip(request)
+    if not IpModel.objects.filter(ip=ip).exists():
+        IpModel.objects.create(ip=ip)
+    if pic.likes.filter(id=IpModel.objects.get(ip=ip).id).exists():
+        pic.likes.remove(IpModel.objects.get(ip=ip))
+    else:
+        pic.likes.add(IpModel.objects.get(ip=ip))
+    return HttpResponseRedirect(reverse('pic', args=[pic_id]))

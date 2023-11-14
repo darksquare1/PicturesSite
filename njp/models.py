@@ -2,11 +2,23 @@ from django.db import models
 from django.urls import reverse
 
 
+class IpModel(models.Model):
+    ip = models.CharField(max_length=128)
+
+    def __str__(self):
+        return self.ip
+
+    class Meta:
+        verbose_name = "Айпишник"
+        verbose_name_plural = 'Айпишник'
+
+
 class Pic(models.Model):
     photo = models.ImageField(upload_to='users/%Y/%m/%d/', verbose_name='Фото')
     photo_thumb_nail = models.ImageField(upload_to='users/thumbs/%Y/%m/%d/', blank=True, verbose_name='thumbnail')
     time_create = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
     tags = models.ManyToManyField('Tag', blank=False, related_name='tags', verbose_name='Теги')
+    likes = models.ManyToManyField(IpModel, related_name='pic_likes', blank=True)
 
     def get_likes_count(self):
         return self.likes.count()
@@ -21,14 +33,6 @@ class Pic(models.Model):
 
     def __str__(self):
         return f"Изображение №{self.pk}"
-
-
-class Like(models.Model):
-    pic = models.ForeignKey(Pic, on_delete=models.CASCADE, related_name='likes')
-    ip_address = models.GenericIPAddressField()
-
-    class Meta:
-        unique_together = ('pic', 'ip_address')
 
 
 class Tag(models.Model):

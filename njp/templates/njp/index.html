@@ -36,6 +36,7 @@
                      <img class="pic-img" src="{{ pic.photo.url }}">
                     {% endif %}
                 </div>
+            {{ pic.get_likes_count }}
                 <div class="img-tag-list">
                     {% for tag in pic.tags.all %}
                         <div class="imgtag" onclick="openTag('{{ tag.name }}')">#{{ tag.name }}</div>
