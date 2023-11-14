@@ -83,7 +83,7 @@ def upload_pic(request):
                 fixed_image = orig_img.convert('RGB')
                 fixed_image = ImageOps.exif_transpose(fixed_image)
                 fixed_image.save(output_thumb, format='webp', quality=90)
-            pic.photo_thumb_nail = InMemoryUploadedFile(output_thumb, 'ImageField', f"{img_name}_thumb.webp",
+                pic.photo_thumb_nail = InMemoryUploadedFile(output_thumb, 'ImageField', f"{img_name}_thumb.webp",
                                                         f"image/webp", sys.getsizeof(output_thumb), None)
             pic.save()
             for i in unique_tags:
